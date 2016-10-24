@@ -32,7 +32,7 @@ def push_public_key(local_key_file='~/.ssh/id_rsa.pub', remote_key_dir='~root'):
     remote_authorized_keys = "%s/.ssh/authorized_keys" % remote_key_dir
 
     with settings(warn_only=True):
-        run("mkdir -p %s 2>/dev/null" % remote_key_dir)
+        run("mkdir -p %s/.ssh" % remote_key_dir)
     if exists(remote_authorized_keys) is None:
         run("touch %s " % remote_authorized_keys)
 
