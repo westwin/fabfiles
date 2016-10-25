@@ -21,6 +21,7 @@ def setup_env():
     #with settings(warn_only=True):
     push_public_key()
     update_os()
+    install_epel_repo()
     install_basic_tools()
     install_dotfiles()
     install_gfw_hosts()
@@ -64,6 +65,12 @@ def install_basic_tools():
     install some basic tools
     """
     sudo("yum install -y vim git rsync unzip wget net-tools telnet bind-utils")
+
+def install_epel_repo():
+    """
+    install yum epel release repo
+    """
+    sudo("yum install -y epel-release")
 
 def install_dotfiles():
     """
