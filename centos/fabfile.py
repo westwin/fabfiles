@@ -21,7 +21,7 @@ def setup_env():
     #with settings(warn_only=True):
     push_public_key()
     create_ssh_key()
-    ssh_no_pwd()
+    #ssh_no_pwd()
     update_os()
     install_epel_repo()
     install_basic_tools()
@@ -60,8 +60,8 @@ def create_ssh_key():
     """
     create local ssh keys
     """
-    local_key_dir = os.path.expanduser('~/.ssh/id_rsa')
-    run("ssh-keygen -t rsa -N '' -f %s" % local_key_dir)
+    local_key_dir = '/root/.ssh/id_rsa'
+    run("echo -e 'y\n' | ssh-keygen -t rsa -N '' -f %s" % local_key_dir)
 
 def ssh_no_pwd(public_key_file='/root/.ssh/id_rsa.pub'):
     """
