@@ -20,6 +20,8 @@ def setup_env():
     """
     #with settings(warn_only=True):
     push_public_key()
+    create_ssh_key()
+    ssh_no_pwd()
     update_os()
     install_epel_repo()
     install_basic_tools()
@@ -53,6 +55,23 @@ def push_public_key(local_key_file='~/.ssh/id_rsa.pub', remote_key_dir='~root'):
         else:
             append(remote_authorized_keys, key)
             run("chmod 600 %s" % remote_authorized_keys)
+
+def create_ssh_key():
+    """
+    create local ssh keys
+    """
+    local_key_dir = os.path.expanduser('~/.ssh/id_rsa')
+    run("ssh-keygen -t rsa -N '' -f %s" % local_key_dir)
+
+def ssh_no_pwd(public_key_file='/root/.ssh/id_rsa.pub'):
+    """
+    circle trust ssh keys
+    """
+    for host in env.hosts:
+        if env.host == host:
+            pass
+        else:
+            push_public_key(local_key_file=public_key_file)
 
 def update_os():
     """
