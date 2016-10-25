@@ -1,39 +1,7 @@
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
-#unit test server
-192.168.30.232 ut1 
-
-#integration servers
-192.168.30.237 int1
-
-#team member servers
-192.168.30.241 qa1
-192.168.30.238 cl1 cl1.nationsky.com
-192.168.30.236 xf2 xf2.nationsky.com
-192.168.30.233 xf3 xf3.nationsky.com
-192.168.30.212 xf4 xf4.nationsky.com
-192.168.30.219 xf5 xf5.nationsky.com
-192.168.30.231 xf6 xf6.nationsky.com
-192.168.30.226 xf7 xf7.nationsky.com
-192.168.30.230 xf8 xf8.nationsky.com
-192.168.30.225 wab1 wab1.nationsky.com
-192.168.30.240 cx1 cx1.nationsky.com
-192.168.30.229 wayne1 wayne1.nationsky.com 
-172.16.30.85 hh1 hh1.nationsky.com
 # Modified hosts start
-
-# OpenshiftOrigin nscloud Start
-
-172.16.50.150     openshiftorigin-dns.nscloud.local
-
-172.16.50.151     openshiftorigin-master.nscloud.local
-
-172.16.50.154     openshiftorigin-node1.nscloud.local
-
-172.16.50.155     openshiftorigin-node2.nscloud.local
-
-# OpenshiftOrigin nscloud End
 
 # Amazon AWS Start
 27.0.1.125	ap-northeast-1.console.aws.amazon.com
