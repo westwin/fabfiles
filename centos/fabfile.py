@@ -10,8 +10,10 @@ USAGE:
 
 '''
 import os
+from StringIO import StringIO
+import tempfile
 
-from fabric.api import sudo, local, run, put, env, cd, settings
+from fabric.api import sudo, local, run, get, put, env, cd, settings
 from fabric.contrib.files import append, exists
 
 def setup_env():
@@ -19,7 +21,7 @@ def setup_env():
     setup centos environments
     """
     #with settings(warn_only=True):
-    push_public_key()
+    ssh_no_pwd()
     create_ssh_key()
     update_os()
     install_epel_repo()
@@ -27,7 +29,7 @@ def setup_env():
     install_dotfiles()
     install_gfw_hosts()
 
-def push_public_key(local_key_file='~/.ssh/id_rsa.pub', remote_key_dir='~root'):
+def ssh_no_pwd(local_key_file='~/.ssh/id_rsa.pub', remote_key_dir='~root'):
     """
     push ssh public key to remote server(s).
     """
@@ -62,6 +64,25 @@ def create_ssh_key():
     local_key_dir = '/root/.ssh/id_rsa'
     run("echo -e 'y\n' | ssh-keygen -t rsa -N '' -f %s" % local_key_dir)
 
+def download_ssh_keys():
+    """
+    ssh wo passwod between remote servers.
+    """
+    # read remote keys to local
+    local_temp_file = "/tmp/.id_rsa.pub.%s" % env.host
+    with settings(warn_only=True):
+        local("rm -rf %s" % local_temp_file)
+        get(local_path=local_temp_file, remote_path="/root/.ssh/id_rsa.pub")
+
+def copy_ssh_keys():
+    """
+    copy all ssh keys to remote
+    """
+    for host in env.hosts:
+        if host != env.host:
+            with settings(warn_only=True):
+                local_temp_file = "/tmp/.id_rsa.pub.%s" % host
+                ssh_no_pwd(local_key_file=local_temp_file, remote_key_dir='~root')
 
 def update_os():
     """

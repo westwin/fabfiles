@@ -16,7 +16,7 @@ from fabric.contrib.files import append, exists
 
 def install_openshift():
     """
-    install openshift 
+    install openshift
     """
     install_base_pkg()
     install_ansible()
@@ -58,9 +58,41 @@ def clone_openshift_ansible_repo():
     with cd(local_repo_basedir):
         run("git clone https://github.com/openshift/openshift-ansible %s" % local_repo_name)
 
+def config_firewall_on_master():
+    """
+    config firewall on master node.
+    """
+    sudo("systemctl start firewalld")
+    sudo("systemctl enable firewalld")
+
+    sudo("firewall-cmd --zone=public --add-port=53/tcp --permanent")
+    sudo("firewall-cmd --zone=public --add-port=8053/tcp --permanent")
+    sudo("firewall-cmd --zone=public --add-port=8443/tcp --permanent")
+    sudo("firewall-cmd --zone=public --add-port=443/tcp --permanent")
+    sudo("firewall-cmd --zone=public --add-port=10250/tcp --permanent")
+    sudo("firewall-cmd --zone=public --add-port=4789/udp --permanent")
+    sudo("firewall-cmd --zone=public --add-port=8053/udp --permanent")
+    sudo("firewall-cmd --zone=public --add-port=53/udp --permanent")
+    sudo("firewall-cmd --reload")
+    run ("echo listing current firewall rules...")
+    run("firewall-cmd --list-all")
+
+def uninstall_docker():
+    """
+    try to uninstall docker
+    """
+    with settings(warn_only=True):
+        installed = run("rpm -q docker")
+        if installed.succeeded:
+            sudo("systemctl stop docker")
+            sudo("yum -y remove docker")
+            sudo("yum -y remove docker-selinux")
+            sudo("rm -rf /var/lib/docker")
+
+
 def install_docker():
     """
-    install docker 
+    install docker
     """
 
     run("yum install -y docker")
@@ -86,6 +118,6 @@ def config_container_logs(max_size='1M', max_file=3):
     """
     cmd = """sed -i '/OPTIONS=.*/c\OPTIONS="--selinux-enabled --insecure-registry 172.30.0.0/16 --log-opt max-size=1M --log-opt max-file=3"' /etc/sysconfig/docker"""
     run(cmd)
-    
+
     run("systemctl restart docker")
-    
+
