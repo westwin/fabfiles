@@ -50,8 +50,9 @@ def config_registry_mirror(restart=True):
 def _restart(restart=True):
     #restart docker
     if restart:
-        run("systemctl enable docker")
-        run("systemctl start docker")
+        with settings(warn_only=True):
+            run("systemctl enable docker")
+            run("systemctl restart docker")
 
 def config_docker_storage(restart=True):
     """
