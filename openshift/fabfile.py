@@ -22,8 +22,6 @@ def install_openshift():
     install_ansible()
 
     clone_openshift_ansible_repo()
-    install_docker()
-    config_docker_storage()
     config_container_logs()
 
 
@@ -74,50 +72,15 @@ def config_firewall_on_master():
     sudo("firewall-cmd --zone=public --add-port=8053/udp --permanent")
     sudo("firewall-cmd --zone=public --add-port=53/udp --permanent")
     sudo("firewall-cmd --reload")
+
     run ("echo listing current firewall rules...")
     run("firewall-cmd --list-all")
 
-def uninstall_docker():
+def shutdown_firewall():
     """
-    try to uninstall docker
+    shutdown firewall for easier debug.
     """
     with settings(warn_only=True):
-        installed = run("rpm -q docker")
-        if installed.succeeded:
-            sudo("systemctl stop docker")
-            sudo("yum -y remove docker")
-            sudo("yum -y remove docker-selinux")
-            sudo("rm -rf /var/lib/docker")
-
-
-def install_docker():
-    """
-    install docker
-    """
-
-    run("yum install -y docker")
-
-    #docker config
-    cmd = """sed -i '/OPTIONS=.*/c\OPTIONS="--selinux-enabled --insecure-registry 172.30.0.0/16"' /etc/sysconfig/docker"""
-    run(cmd)
-
-    #start docker
-    run("systemctl enable docker")
-    run("systemctl start docker")
-
-def config_docker_storage():
-    """
-    TODO: config docker storage
-    """
-    pass
-
-def config_container_logs(max_size='1M', max_file=3):
-    """
-    managing container logs.
-    TODO: paramerize
-    """
-    cmd = """sed -i '/OPTIONS=.*/c\OPTIONS="--selinux-enabled --insecure-registry 172.30.0.0/16 --log-opt max-size=1M --log-opt max-file=3"' /etc/sysconfig/docker"""
-    run(cmd)
-
-    run("systemctl restart docker")
+        sudo("systemctl stop firewalld")
+        sudo("systemctl disable firewalld")
 
