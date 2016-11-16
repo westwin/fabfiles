@@ -1,0 +1,67 @@
+# This is the default ansible 'hosts' file.
+#
+# It should live in /etc/ansible/hosts
+#
+#   - Comments begin with the '#' character
+#   - Blank lines are ignored
+#   - Groups of hosts are delimited by [header] elements
+#   - You can enter hostnames or ip addresses
+#   - A hostname/ip can be a member of multiple groups
+
+# Ex 1: Ungrouped hosts, specify before any group headers.
+
+## green.example.com
+## blue.example.com
+## 192.168.100.1
+## 192.168.100.10
+
+# Ex 2: A collection of hosts belonging to the 'webservers' group
+
+## [webservers]
+## alpha.example.org
+## beta.example.org
+## 192.168.1.100
+## 192.168.1.110
+
+# If you have multiple hosts following a pattern you can specify
+# them like this:
+
+## www[001:006].example.com
+
+# Ex 3: A collection of database servers in the 'dbservers' group
+
+## [dbservers]
+## 
+## db01.intranet.mydomain.net
+## db02.intranet.mydomain.net
+## 10.25.1.56
+## 10.25.1.57
+
+# Here's another example of host ranges, this time there are no
+# leading 0s:
+
+## db-[99:101]-node.example.com
+#Create an OSEv3 group that contains the masters and nodes groups
+[OSEv3:children]
+masters
+nodes
+# Set variables common for all OSEv3 hosts
+[OSEv3:vars]
+# SSH user, this user should allow ssh based auth without requiring a password
+ansible_ssh_user=root
+# If ansible_ssh_user is not root, ansible_become must be set to true
+#ansible_become=true
+deployment_type=origin
+#configuring cluster metrics
+openshift_hosted_metrics_deploy=true
+#osm_cluster_network_cidr=10.10.0.0/16
+# uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
+#openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+# host group for masters
+[masters]
+xf3.nscloud.local
+# host group for nodes, includes region info
+[nodes]
+xf3.nscloud.local openshift_node_labels="{'region': 'infra', 'zone': 'default'}" openshift_schedulable=true
+#xf3.nscloud.local openshift_node_labels="{'region': 'infra', 'zone': 'default'}" openshift_schedulable=false
+xf4.nscloud.local openshift_node_labels="{'region': 'primary', 'zone': 'east'}"
