@@ -84,3 +84,10 @@ def shutdown_firewall():
         sudo("systemctl stop firewalld")
         sudo("systemctl disable firewalld")
 
+def pull_images():
+    """
+    pull openshift related images manually.
+    """
+    run("docker pull openshift/origin-deployer:v1.3.1")
+    run("docker pull openshift/origin-docker-registry:v1.3.1")
+    run("docker pull openshift/origin-metrics-deployer:latest")
