@@ -43,7 +43,7 @@ def uninstall():
 def config_registry_mirror(restart=True):
     #docker mirror
     mirror = "http://146f0d71.m.daocloud.io"
-    cmd = """sed -i 's|OPTIONS="|OPTIONS="--registry-mirror=http://146f0d71.m.daocloud.io |g' /etc/sysconfig/docker"""
+    cmd = """sed -i "s|OPTIONS='|OPTIONS='--registry-mirror=http://146f0d71.m.daocloud.io |g" /etc/sysconfig/docker"""
     run(cmd)
     _restart(restart)
 
