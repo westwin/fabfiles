@@ -120,3 +120,11 @@ def install_gfw_hosts():
     install GFW hosts file
     """
     put(local_path="./hosts", remote_path="/etc/hosts", mirror_local_mode=True)
+
+def stop_firewall():
+    """
+    shutdown firewall
+    """
+    with settings(warn_only=True):
+        sudo("systemctl stop firewalld")
+        sudo("systemctl disable firewalld")
