@@ -22,11 +22,17 @@ def install():
     run("yum update -y ")
 
     config_registry_mirror(restart=False)
-    config_docker_storage(restart=False)
+    config_storage(restart=False)
 
     #start docker
     run("systemctl enable docker")
     run("systemctl start docker")
+
+def install_compose():
+    cmd = """curl -L "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose"""
+
+    run(cmd)
+    run("chmod +x /usr/local/bin/docker-compose")
 
 def uninstall():
     """
@@ -54,8 +60,9 @@ def _restart(restart=True):
             run("systemctl enable docker")
             run("systemctl restart docker")
 
-def config_docker_storage(restart=True):
+def config_storage(restart=True):
     """
     TODO: config docker storage
     """
     pass
+
