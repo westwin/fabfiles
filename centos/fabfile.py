@@ -28,6 +28,7 @@ def setup_env():
     install_basic_tools()
     install_dotfiles()
     install_gfw_hosts()
+    motd()
 
 def ssh_no_pwd(local_key_file='~/.ssh/id_rsa.pub', remote_key_dir='~root'):
     """
@@ -120,6 +121,14 @@ def install_gfw_hosts():
     install GFW hosts file
     """
     put(local_path="./hosts", remote_path="/etc/hosts", mirror_local_mode=True)
+
+
+def motd():
+    """
+    motd text
+    """
+    run("echo %s >/etc/motd" % "I LOVE YOU, AGNES !")
+
 
 def stop_firewall():
     """
