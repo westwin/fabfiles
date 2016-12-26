@@ -16,9 +16,12 @@ from fabric.contrib.files import append, exists
 
 def install():
     """
-    install docker
+    install docker engine rather than docker which is maintained by ubuntu
+    see the difference https://www.quora.com/What-is-the-difference-between-docker-engine-and-docker-io-packages
     """
-    run("yum install -y docker")
+    put(local_path="./docker.repo", remote_path="/etc/yum.repos.d", mirror_local_mode=True)
+
+    run("yum install -y docker-engine")
     run("yum update -y ")
 
     config_registry_mirror(restart=False)
@@ -48,8 +51,9 @@ def uninstall():
 
 def config_registry_mirror(restart=True):
     #docker mirror
-    mirror = "http://146f0d71.m.daocloud.io"
-    cmd = """sed -i "s|OPTIONS='|OPTIONS='--registry-mirror=http://146f0d71.m.daocloud.io |g" /etc/sysconfig/docker"""
+    #mirror = "http://146f0d71.m.daocloud.io"
+    #cmd = """sed -i "s|OPTIONS='|OPTIONS='--registry-mirror=http://146f0d71.m.daocloud.io |g" /etc/sysconfig/docker"""
+    cmd = """curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://146f0d71.m.daocloud.io """
     run(cmd)
     _restart(restart)
 
