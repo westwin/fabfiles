@@ -23,11 +23,11 @@ def setup_env():
     #with settings(warn_only=True):
     ssh_no_pwd()
     create_ssh_key()
+    install_gfw_hosts()
     update_os()
     install_epel_repo()
     install_basic_tools()
     install_dotfiles()
-    install_gfw_hosts()
     motd()
 
 def ssh_no_pwd(local_key_file='~/.ssh/id_rsa.pub', remote_key_dir='~root'):
