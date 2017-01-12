@@ -83,7 +83,7 @@ def copy_ssh_keys():
         if host != env.host:
             with settings(warn_only=True):
                 local_temp_file = "/tmp/.id_rsa.pub.%s" % host
-                ssh_no_pwd(local_key_file=local_temp_file, remote_key_dir='~root')
+                ssh_no_pwd(local_key_file=local_temp_file, remote_key_dir='/root')
 
 def update_os():
     """
