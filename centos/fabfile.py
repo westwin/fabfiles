@@ -51,12 +51,13 @@ def ssh_no_pwd(local_key_file='~/.ssh/id_rsa.pub', remote_key_dir='~root'):
 
     with settings(warn_only=True):
         # check if the public exists on remote server.
-        ret = run("grep -q '%s' '%s'" %  (key, remote_authorized_keys))
-        if ret.return_code == 0:
-            pass
-        else:
-            append(remote_authorized_keys, key)
-            run("chmod 600 %s" % remote_authorized_keys)
+        #ret = run("grep -q '%s' '%s'" %  (key, remote_authorized_keys))
+        #if ret.return_code == 0:
+        #    print "existed"
+        #    pass
+        #else:
+        append(remote_authorized_keys, key)
+        run("chmod 600 %s" % remote_authorized_keys)
 
 def create_ssh_key():
     """
