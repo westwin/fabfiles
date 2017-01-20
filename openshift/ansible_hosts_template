@@ -54,6 +54,12 @@ ansible_ssh_user=root
 deployment_type=origin
 #configuring cluster metrics
 openshift_hosted_metrics_deploy=true
+openshift_hosted_metrics_storage_kind=nfs
+openshift_hosted_metrics_storage_access_modes=['ReadWriteOnce']
+openshift_hosted_metrics_storage_nfs_directory=/exports
+openshift_hosted_metrics_storage_nfs_options='*(rw,root_squash)'
+openshift_hosted_metrics_storage_volume_name=metrics
+openshift_hosted_metrics_storage_volume_size=5Gi
 #replace with your local
 openshift_master_default_subdomain=nscloud.local
 #osm_cluster_network_cidr=10.10.0.0/16
