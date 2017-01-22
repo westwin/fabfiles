@@ -19,7 +19,8 @@ def install():
     install docker engine rather than docker which is maintained by ubuntu
     see the difference https://www.quora.com/What-is-the-difference-between-docker-engine-and-docker-io-packages
     """
-    put(local_path="./docker.repo", remote_path="/etc/yum.repos.d", mirror_local_mode=True)
+    run("yum-config-manager --add-repo https://docs.docker.com/engine/installation/linux/repo_files/centos/docker.repo")
+    #put(local_path="./docker.repo", remote_path="/etc/yum.repos.d", mirror_local_mode=True)
 
     run("yum install -y docker-engine")
     run("yum update -y ")
