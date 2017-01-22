@@ -96,7 +96,7 @@ def install_basic_tools():
     """
     install some basic tools
     """
-    sudo("yum install -y vim git rsync unzip wget net-tools telnet bind-utils bash-completion fabric ")
+    sudo("yum install -y yum-utils vim git rsync unzip wget net-tools telnet bind-utils bash-completion fabric ")
 
 def install_epel_repo():
     """
