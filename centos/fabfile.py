@@ -26,6 +26,7 @@ def setup_env():
     install_gfw_hosts()
     update_os()
     install_epel_repo()
+    install_centos_release_scl_repo()
     install_basic_tools()
     install_dotfiles()
     motd()
@@ -120,6 +121,12 @@ def install_epel_repo():
     install yum epel release repo
     """
     sudo("yum install -y epel-release")
+
+def install_centos_release_scl_repo():
+    """
+    install yum centos release scl repo
+    """
+    sudo("yum install -y centos-release-scl")
 
 def install_dotfiles():
     """
