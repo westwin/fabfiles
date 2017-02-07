@@ -30,6 +30,23 @@ def setup_env():
     install_dotfiles()
     motd()
 
+def create_me():
+    """
+    create me
+    """
+    me = "xifeng"
+    password = "xifeng"
+
+    with settings(warn_only=True):
+        run("groupadd %s" % me)
+
+        user_add = """useradd -m -d /home/%s -g %s -G wheel -s "/bin/bash" %s  """ % (me, me, me)
+        run(user_add)
+
+        #set password
+        set_pwd = """echo -e '%s' | sudo passwd '%s' --stdin""" % (password, me)
+        run(set_pwd)
+
 def ssh_no_pwd(local_key_file='~/.ssh/id_rsa.pub', remote_key_dir='~root'):
     """
     push ssh public key to remote server(s).

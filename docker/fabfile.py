@@ -13,14 +13,16 @@ import os
 from fabric.api import sudo, local, run, put, env, cd, settings
 from fabric.contrib.files import append, exists
 
+def install_yum_repo():
+    """install docker-engine yum repo"""
+    run("yum-config-manager --add-repo https://docs.docker.com/engine/installation/linux/repo_files/centos/docker.repo")
 
 def install():
     """
     install docker engine rather than docker which is maintained by ubuntu
     see the difference https://www.quora.com/What-is-the-difference-between-docker-engine-and-docker-io-packages
     """
-    run("yum-config-manager --add-repo https://docs.docker.com/engine/installation/linux/repo_files/centos/docker.repo")
-    #put(local_path="./docker.repo", remote_path="/etc/yum.repos.d", mirror_local_mode=True)
+    install_yum_repo()
 
     run("yum install -y docker-engine")
     run("yum update -y ")
