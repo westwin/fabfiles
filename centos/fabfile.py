@@ -30,6 +30,7 @@ def setup_env():
     install_basic_tools()
     install_dotfiles()
     motd()
+    install_dockerize()
 
 def create_me():
     """
@@ -154,6 +155,12 @@ def motd():
     """
     run("echo %s >/etc/motd" % "I LOVE YOU, AGNES !")
 
+def install_dockerize(version="v0.3.0"):
+    """
+    install dockerize
+    """
+    cmd = """curl --insecure --retry 5 -L https://github.com/jwilder/dockerize/releases/download/%s/dockerize-linux-amd64-%s.tar.gz | tar -C /usr/local/bin -xz""" % (version,version)
+    sudo(cmd)
 
 def stop_firewall():
     """
