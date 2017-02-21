@@ -62,15 +62,15 @@ def config_registry_mirror(restart=True):
     #mirror = "http://146f0d71.m.daocloud.io"
     #cmd = """sed -i "s|OPTIONS='|OPTIONS='--registry-mirror=http://146f0d71.m.daocloud.io |g" /etc/sysconfig/docker"""
     cmd = """curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://146f0d71.m.daocloud.io """
-    run(cmd)
+    sudo(cmd)
     _restart(restart)
 
 def _restart(restart=True):
     #restart docker
     if restart:
         with settings(warn_only=True):
-            run("systemctl enable docker")
-            run("systemctl restart docker")
+            sudo("systemctl enable docker")
+            sudo("systemctl restart docker")
 
 def config_storage(restart=True):
     """
