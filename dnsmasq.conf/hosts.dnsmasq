@@ -1,0 +1,69 @@
+# nscloud.local start
+# uc jenkins build
+192.168.30.87 build build.nscloud.local
+
+192.168.30.11 xf1 xf1.nscloud.local
+192.168.30.12 xf2 xf2.nscloud.local
+192.168.30.13 xf3 xf3.nscloud.local
+192.168.30.14 xf4 xf4.nscloud.local
+192.168.30.20 xfd1 xfd1.nscloud.local
+192.168.30.21 xfd2 xfd2.nscloud.local
+
+# npns servers
+192.168.30.22 npns1 npns1.nscloud.local
+192.168.30.23 npns2 npns2.nscloud.local
+192.168.30.24 npnsbuild npnsbuild.nscloud.local
+#
+# nscloud.local end
+192.168.30.31 cl1 cl1.nscloud.local
+192.168.30.217 qa3 qa3.nscloud.local
+192.168.30.213 qa4 qa4.nscloud.local
+192.168.30.221 qa2 qa2.nscloud.local
+192.168.30.241 qa1 qa1.nscloud.local
+192.168.30.40 ywx1 ywx1.nscloud.local
+192.168.30.41 ywx2 ywx2.nscloud.local
+
+192.168.30.42 ywx3 ywx3.nscloud.local
+192.168.30.43 ywx4 ywx4.nscloud.local
+
+192.168.30.32 cl2 cl2.nscloud.local
+192.168.30.33 cl3 cl3.nscloud.local
+192.168.30.35 cl5 cl5.nscloud.local
+192.168.30.36 cl6 cl6.nscloud.local
+
+#integration servers
+192.168.30.238 int2 int2.nscloud.local
+
+#ut servers
+192.168.30.232 ut1 ut1.nscloud.local
+
+
+
+#nfs servers
+172.16.10.120 nfs1 nfs1.nscloud.local
+
+######lab in 172.16.10.247
+172.16.10.100 dev1-master
+172.16.10.101 dev1-node1
+172.16.10.102 dev1-node2
+172.16.10.103 dev1-node3
+
+
+172.16.10.105 dev2-master
+172.16.10.106 dev2-node1
+
+#qa1
+172.16.10.110 qa1-master
+172.16.10.111 qa1-node1
+172.16.10.112 qa1-node2
+
+#qa2
+172.16.10.115 qa2-master
+172.16.10.116 qa2-node1
+
+#emm test labs for npns dockerize
+172.16.10.52 sag
+172.16.10.51 emm
+
+#docker registry
+172.16.10.231 registry registry.nscloud.local
