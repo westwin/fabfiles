@@ -25,7 +25,7 @@ def install():
     install_yum_repo()
 
     sudo("yum install -y docker-engine")
-    sudo("yum update -y ")
+    #sudo("yum update -y ")
 
     #config_registry_mirror(restart=False)
 
