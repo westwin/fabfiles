@@ -15,7 +15,7 @@ from fabric.contrib.files import append, exists
 
 def install_yum_repo():
     """install docker-engine yum repo"""
-    sudo("yum-config-manager --add-repo https://docs.docker.com/engine/installation/linux/repo_files/centos/docker.repo")
+    sudo("yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo")
 
 def install():
     """
@@ -24,7 +24,7 @@ def install():
     """
     install_yum_repo()
 
-    sudo("yum install -y docker-engine")
+    sudo("yum install -y docker-ce")
     #sudo("yum update -y ")
 
     #config_registry_mirror(restart=False)
@@ -44,18 +44,6 @@ def install_compose():
     #docker compose completion
     cmd = """curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose"""
     sudo(cmd)
-
-def uninstall():
-    """
-    try to uninstall docker
-    """
-    with settings(warn_only=True):
-        installed = run("rpm -q docker")
-        if installed.succeeded:
-            sudo("systemctl stop docker")
-            sudo("yum -y remove docker")
-            sudo("yum -y remove docker-selinux")
-            sudo("rm -rf /var/lib/docker")
 
 def config_registry_mirror(restart=True):
     #docker mirror
