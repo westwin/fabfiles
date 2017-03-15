@@ -15,6 +15,7 @@ from fabric.contrib.files import append, exists
 
 def install_yum_repo():
     """install docker-engine yum repo"""
+    sudo("yum install -y yum-utils")
     sudo("yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo")
 
 def install():
