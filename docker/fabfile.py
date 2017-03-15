@@ -35,6 +35,12 @@ def install():
     #start docker
     _restart()
 
+def uninstall_docker_engine():
+    """uninstall old docker-engine"""
+    with settings(warn_only=True):
+        sudo("yum remove -y docker-engine")
+        sudo("yum install -y docker-engine-selinux")
+
 def install_compose():
     #cmd = """curl -L "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose"""
 
