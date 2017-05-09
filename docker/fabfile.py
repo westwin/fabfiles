@@ -107,6 +107,7 @@ def dns_resolve(fqdn="registry.nscloud.local", ip="192.168.30.203"):
             print "yes. dns can resolve."
         else:
             print "no. dns can no resolve."
+            sudo("echo  >> /etc/hosts")
             sudo("echo %s   %s >> /etc/hosts" % (ip,fqdn))
 
 def _parse_scheme(url):
