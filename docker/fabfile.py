@@ -95,7 +95,7 @@ def config_bj_registry(pull_registry="https://registry.nscloud.local:5005",push_
 
     _restart()
 
-def dns_resolve(fqdn="registry.nscloud.local", ip="172.16.10.231"):
+def dns_resolve(fqdn="registry.nscloud.local", ip="192.168.30.203"):
     """
     config registry fqdn and ip mapping in case of dns can not resolve
     NOTE: the dns server 192.168.30.202 in bj can resolve this fqdn

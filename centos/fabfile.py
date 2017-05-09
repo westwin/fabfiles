@@ -30,7 +30,12 @@ def setup_env():
     install_basic_tools()
     install_dotfiles()
     motd()
-    install_dockerize()
+    #install_dockerize()
+    install_jdk()
+
+def install_jdk():
+    """ install jdk """
+    sudo("yum install -y java-1.8.0-openjdk")
 
 def create_me():
     """
