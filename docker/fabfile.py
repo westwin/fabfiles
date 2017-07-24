@@ -93,6 +93,10 @@ def config_bj_registry(pull_registry="https://registry.nscloud.local:5005",push_
     cmd = """docker login %s -u %s -p %s""" % (push_registry, user, password)
     sudo(cmd)
 
+    #perform a docker login for pull
+    cmd = """docker login %s -u %s -p %s""" % (pull_registry, user, password)
+    sudo(cmd)
+
     _restart()
 
 def dns_resolve(fqdn="registry.nscloud.local", ip="192.168.30.203"):

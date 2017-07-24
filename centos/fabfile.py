@@ -15,6 +15,9 @@ import tempfile
 
 from fabric.api import sudo, local, run, get, put, env, cd, settings
 from fabric.contrib.files import append, exists
+#import logging
+
+#logging.basicConfig()
 
 def setup_env():
     """
@@ -28,6 +31,7 @@ def setup_env():
     install_epel_repo()
     #install_centos_release_scl_repo()
     install_basic_tools()
+    install_python_lib()
     install_dotfiles()
     motd()
     #install_dockerize()
@@ -121,6 +125,15 @@ def install_basic_tools():
     install some basic tools
     """
     sudo("yum install -y yum-utils vim git rsync unzip wget net-tools telnet bind-utils bash-completion fabric ")
+
+def install_python_lib():
+    """
+    install python tools and libs.
+    """
+    with settings(warn_only=True):
+        sudo("yum install -y python-ldap python-pip")
+        sudo("pip install --upgrade pip")
+        sudo("pip install requests")
 
 def install_epel_repo():
     """
