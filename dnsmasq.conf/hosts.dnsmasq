@@ -1,13 +1,69 @@
+# sag lab
+172.16.50.178 sag1 # root/111111
+172.16.50.179 sag2 # root/111111
+
+# demo public addr
+192.168.33.202 internal-uc
+192.168.33.202 demo-uc
+192.168.33.202 debug-uc
+114.242.65.22 internal-uc.nq-sky.net
+114.242.65.22 demo-uc.nq-sky.net
+114.242.65.22 debug-uc.nq-sky.net
+
+#tianjin test ad
+10.1.15.246 dc.dev.bemail.com
+10.1.12.2 yangwangxing yangwangxing.nscloud.local
+
+#xifeng laptop
+10.31.196.200 xifeng xifeng.nscloud.local
+#192.168.30.10 xifeng xifeng.nscloud.local
+10.1.12.54 chenxi chenxi.nscloud.local
+10.1.12.155 cuilong cuilong.nscloud.local
+
+#nationsky company software servers
+192.168.22.205 jenkins.ns
+192.168.22.67 bitbucket.ns
+192.168.33.216 jira.ns
+192.168.33.218 wiki.ns
+
+#QA servers
+#mail server
+192.168.30.217 mail mail.nscloud.local
+#QA psr LiJin
+192.168.22.55 psr psr.nscloud.local
+#
 # nscloud.local start
 # uc jenkins build
 192.168.30.87 build build.nscloud.local
+192.168.30.10 demo demo.nscloud.local
+192.168.30.11 stage1 stage1.nscloud.local
 
-192.168.30.11 xf1 xf1.nscloud.local
-192.168.30.12 xf2 xf2.nscloud.local
-192.168.30.13 xf3 xf3.nscloud.local
-192.168.30.14 xf4 xf4.nscloud.local
+
+#integration with sag
+192.168.30.28 uc-sag uc-sag.nscloud.local
+
+#iaas & uc
+10.160.59.123 uc-iaas uc-iaas.nscloud.local
+
+#uem & uc
+192.168.22.80 uc-uem uc-uem.nscloud.local
+
 192.168.30.20 xfd1 xfd1.nscloud.local
 192.168.30.21 xfd2 xfd2.nscloud.local
+192.168.30.22 xfgw xfgw.nscloud.local
+192.168.30.25 xfd3 xfd3.nscloud.local
+192.168.30.29 xfd4 xfd4.nscloud.local
+192.168.30.30 xfd5 xfd5.nscloud.local
+#192.168.30.31 xfd6 xfd6.nscloud.local
+192.168.30.186 xfd6 xfd6.nscloud.local
+
+#customers
+192.168.30.186 hr hr.nscloud.local
+192.168.30.187 cicc1 cicc1.nscloud.local
+192.168.30.189 cicc2 cicc2.nscloud.local
+
+# xu ming
+192.168.30.40 xm1 xm1.nscloud.local
 
 # npns servers
 192.168.30.22 npns1 npns1.nscloud.local
@@ -15,55 +71,86 @@
 192.168.30.24 npnsbuild npnsbuild.nscloud.local
 #
 # nscloud.local end
+192.168.30.226 cx1 cx1.nscloud.local
 192.168.30.31 cl1 cl1.nscloud.local
 192.168.30.217 qa3 qa3.nscloud.local
 192.168.30.213 qa4 qa4.nscloud.local
 192.168.30.221 qa2 qa2.nscloud.local
+192.168.30.212 qa6 qa6.nscloud.local
 192.168.30.241 qa1 qa1.nscloud.local
-192.168.30.40 ywx1 ywx1.nscloud.local
-192.168.30.41 ywx2 ywx2.nscloud.local
-
-192.168.30.42 ywx3 ywx3.nscloud.local
-192.168.30.43 ywx4 ywx4.nscloud.local
 
 192.168.30.32 cl2 cl2.nscloud.local
 192.168.30.33 cl3 cl3.nscloud.local
-192.168.30.35 cl5 cl5.nscloud.local
-192.168.30.36 cl6 cl6.nscloud.local
+192.168.30.34 cl4 cl4.nscloud.local
+
+192.168.30.226 cx1 cx1.nscloud.local
+192.168.30.229 ywx ywx.nscloud.local
+192.168.30.230 ywx1 ywx1.nscloud.local
+
+192.168.30.175 yyl01 yyl01.nscloud.local
+192.168.30.177 yyl02 yyl02.nscloud.local
+192.168.30.179 yyl09 yyl03.nscloud.local
 
 #integration servers
 192.168.30.238 int2 int2.nscloud.local
+
+192.168.30.176 ithh1 ithh1.nscloud.local
 
 #ut servers
 192.168.30.232 ut1 ut1.nscloud.local
 
 
-
 #nfs servers
-172.16.10.120 nfs1 nfs1.nscloud.local
+192.168.30.204 nfs1 nfs1.nscloud.local
 
-######lab in 172.16.10.247
-172.16.10.100 dev1-master
-172.16.10.101 dev1-node1
-172.16.10.102 dev1-node2
-172.16.10.103 dev1-node3
+######dev1-esdp lab
+192.168.30.180 dev1-master
+192.168.30.181 dev1-node1
+192.168.30.184 dev1-node2
+192.168.30.182 dev1-nfs
+192.168.30.183 dev1-instl
+
+######dev2-tae lab
+192.168.30.190 dev2-master
+192.168.30.191 dev2-node1
+192.168.30.192 dev2-node2
+192.168.30.193 dev2-node3
+
+#dev3 tae lab
+192.168.30.26 dev3-master dev3-master.nscloud.local
+192.168.30.27 dev3-node1 dev3-node1.nscloud.local
+
+#172.16.10.105 dev2-master
+#172.16.10.106 dev2-node1
 
 
-172.16.10.105 dev2-master
-172.16.10.106 dev2-node1
+# oidc openshift server
+192.168.30.130 oidc oidc.nscloud.local
 
-#qa1
-172.16.10.110 qa1-master
-172.16.10.111 qa1-node1
-172.16.10.112 qa1-node2
+#qa1-esdp
+192.168.30.160 qa1-master
+192.168.30.161 qa1-node1
+192.168.30.162 qa1-node2
+192.168.30.163 qa1-node3
+192.168.30.164 qa1-nginx
 
-#qa2
-172.16.10.115 qa2-master
-172.16.10.116 qa2-node1
+#qa2-esdp
+192.168.30.170 qa2-master
+192.168.30.171 qa2-node1
+192.168.30.172 qa2-node2
 
-#emm test labs for npns dockerize
-172.16.10.52 sag
-172.16.10.51 emm
+#esdp-instl control server
+192.168.30.159 esdp-instl esdp-instl.nscloud.local
+
+#qa automation test server
+192.168.30.200 qa-auto
+
+#qa lap test servers
+192.168.30.214 qaldaps qaldaps.nscloud.local
 
 #docker registry
-172.16.10.231 registry registry.nscloud.local
+192.168.30.203 registry registry.nscloud.local
+
+#dailyserver
+172.16.10.233 ydocker.dailynpns
+
