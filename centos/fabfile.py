@@ -118,6 +118,7 @@ def update_os():
     """
     yum update -y os
     """
+    sudo("yum upgrade -y")
     sudo("yum update -y")
 
 def install_basic_tools():
