@@ -30,7 +30,7 @@ def install():
 
     #config_registry_mirror(restart=False)
 
-    use_bj_registry()
+    #use_bj_registry()
 
     #start docker
     _restart()
