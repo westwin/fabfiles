@@ -19,7 +19,7 @@ from fabric.contrib.files import append, exists
 
 #logging.basicConfig()
 
-def setup_env():
+def setup_env(update=False,jdk=False):
     """
     setup centos environments
     """
@@ -27,15 +27,18 @@ def setup_env():
     ssh_no_pwd()
     create_ssh_key()
     #install_gfw_hosts()
-    update_os()
     install_epel_repo()
+    if update:
+        update_os()
     #install_centos_release_scl_repo()
     install_basic_tools()
     install_python_lib()
     install_dotfiles()
     motd()
     #install_dockerize()
-    install_jdk()
+    if jdk:
+        install_jdk()
+    create_me
 
 def install_jdk():
     """ install jdk """
