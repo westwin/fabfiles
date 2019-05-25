@@ -26,7 +26,6 @@ def setup_env(update=False,jdk=False):
     #with settings(warn_only=True):
     ssh_no_pwd()
     create_ssh_key()
-    #install_gfw_hosts()
     install_epel_repo()
     if update:
         update_os()
@@ -163,13 +162,6 @@ def install_dotfiles():
             run("bash %s/dotfiles/install.sh" % tmp_dir)
 
         run("rm -rf %s/dotfiles" % tmp_dir)
-
-def install_gfw_hosts():
-    """
-    install GFW hosts file
-    """
-    put(local_path="./hosts", remote_path="/etc/hosts", mirror_local_mode=True)
-
 
 def motd():
     """
